@@ -1,0 +1,18 @@
+import FreeCAD as App
+import Part
+import FreeCADGui as Gui
+
+#Clear any open documents
+if App.activeDocument():
+    App.closeDocument(App.activeDocument().Name)
+
+#Create a new document
+doc = App.newDocument("simple-box")
+width = 50
+length = 30
+height = 20
+my_box = Part.makeBox(width, length, height)
+
+box_obj = doc.addObject("Part::Feature", "My box")
+box_obj.Shape = my_box
+doc.recompute()
